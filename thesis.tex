@@ -506,10 +506,10 @@ In this paper, in order to mitigate the physical border and the linguistic borde
 %\textbf{why FL and why vertical FL} 
 %\textbf{want to say also that our method won't impact the overall performance by adding the secure aggregation.}
 
-In this work, we present \emph{vFedSec} - an efficient and privacy-preserving way of training under the Vertical FL setup. %We propose this novel design, called \emph{vFedSec} in Section \ref{sec:secagg}, for training VFL securely and efficiently. 
-Section \ref{sec:secagg} describes our proposed design and introduces its core component, the architecture-agnostic \emph{Secure Layer}.
+This work present \emph{vFedSec} - an efficient and privacy-preserving way of training under the Vertical FL setup. %We propose this novel design, called \emph{vFedSec} in Section \ref{sec:secagg}, for training VFL securely and efficiently. 
+Figure~\ref{fig:protocol} describes our proposed design and introduces its core component, the architecture-agnostic \emph{Secure Layer}.
 % \emph{vFedSec} applies the idea of Secure Aggregation, which masks intermediate outputs and gradients using noise when communicating data with the server. 
-We provide a robust theoretical justification showing that our proposed method does not adversely affect training performance and private information is protected through the Secure Layer. To validate our claims empirically, we have conducted comprehensive experiments over four varied datasets of differing data volumes and model architectures, as detailed in Section \ref{sec:exp}. The results substantiate that our vFedSec imposes negligible overhead in all cases. Moreover, our method demonstrates a remarkable $\geq 690$x speedup and $\geq 9.6$x decrease in communication costs when compared to the resource-intensive homomorphic encryption (HE) techniques, thus affirming its superior computational and communication efficiency. % We demonstrate theoretically that our method does not impact training performance and private information is protected through the Secure Layer. In addition, we demonstrate empirically its applicability with extensive experiments over four datasets with various data sizes and model architectures described in Section \ref{sec:exp} to show that \emph{vFedSec} incurs minimal overhead. In addition, we demonstrate that our method can obtain \num{9.1e2} $\sim$ \num{3.8e4} speedup compared to more computation and communication expensive homomorphic encryption (HE). 
+We provide a robust theoretical justification showing that our proposed method does not adversely affect training performance and private information is protected through the Secure Layer. To validate our claims empirically, we have conducted comprehensive experiments over four varied datasets of differing data volumes and model architectures. The results substantiate that our vFedSec imposes negligible overhead in all cases. Moreover, our method demonstrates a remarkable $\geq 690$x speedup and $\geq 9.6$x decrease in communication costs when compared to the resource-intensive homomorphic encryption (HE) techniques, thus affirming its superior computational and communication efficiency. % We demonstrate theoretically that our method does not impact training performance and private information is protected through the Secure Layer. In addition, we demonstrate empirically its applicability with extensive experiments over four datasets with various data sizes and model architectures described in Section \ref{sec:exp} to show that \emph{vFedSec} incurs minimal overhead. In addition, we demonstrate that our method can obtain \num{9.1e2} $\sim$ \num{3.8e4} speedup compared to more computation and communication expensive homomorphic encryption (HE). 
 
 
 % Section 5 contains a detailed discussion on two crucial aspects of our approach: the threat model with privacy guarantees and scalability in FL. This discussion encapsulates potential attack scenarios, our method's resilience against them, and its scalability in large-scale FL setups. 
@@ -526,7 +526,9 @@ We provide a robust theoretical justification showing that our proposed method d
 \section{Data Aspect: Semi-supervised and Self-supervised FL}
 \subsection{FedAnchor: Enhancing Federated Semi-Supervised Learning with Label Contrastive Loss}
 
-Federated learning (FL)~\citep{fedavg} allows edge devices to collaboratively learn a shared global model while keeping their private data locally on the device, thereby decoupling the ability to do machine learning from the need to store data in the cloud. There are nearly seven billion connected Internet of Things (IoT) devices and three billion smartphones around the world~\citep{lim2020federated}, potentially giving access to an astonishing amount of training data and decentralized computing power for meaningful research and applications. Most existing FL works primarily focus on supervised learning where the local private data is fully labeled. However, assuming that the full set of private data samples includes rich annotations is unrealistic for real-world applications~\citep{fedmatch, semifl, jin2020towards,yang2021federated}. 
+% Federated learning (FL)~\citep{fedavg} allows edge devices to collaboratively learn a shared global model while keeping their private data locally on the device, thereby decoupling the ability to do machine learning from the need to store data in the cloud. There are nearly seven billion connected Internet of Things (IoT) devices and three billion smartphones around the world~\citep{lim2020federated}, potentially giving access to an astonishing amount of training data and decentralized computing power for meaningful research and applications. 
+
+Most existing FL works primarily focus on supervised learning where the local private data is fully labeled. However, assuming that the full set of private data samples includes rich annotations is unrealistic for real-world applications~\citep{fedmatch, semifl, jin2020towards,yang2021federated}. 
 Although for some applications of FL, such as keyboard predictions, labeling data requires virtually no additional effort, this is not generally the case. 
 
 Acquiring large-scale labeled datasets on the user side can be extremely costly. For example, a large amount of unlabeled data is generated through interactions with smart devices in daily life, such as pictures or physiological indicators measured by wearables. These volumes of data make it impractical to mandate individual users to annotate the data manually. This task can be excessively time-intensive for users, or they may lack the requisite advanced knowledge or expertise for accurate annotation, particularly when the dataset pertains to a specialized domain such as medical data~\citep{yang2021federated}. The complicated process of annotation results in most user data remaining unlabeled, further leading to the conventional FL pipeline being unable to conduct supervised learning.
@@ -584,7 +586,8 @@ This might lead to slow convergence issues, especially during the beginning of t
     \end{algorithmic}
 \end{algorithm}
 
-In this paper, we propose an enhanced federated SSL method, dubbed \method ~- a newly designed label contrastive loss based on the cosine similarity metric to train on labeled anchor data on the server.
+This work proposes an enhanced federated SSL method, dubbed \method ~- a newly designed label contrastive loss based on the cosine similarity metric to train on labeled anchor data on the server.
+
 In this way, instead of retaining the high-confidence data through solely model prediction in the conventional SSL studies, \method \textit{for-the-first-time} generates the pseudo labels by comparing the similarities between the model representations of unlabeled data and label anchor data. This provides better quality pseudo-labels as shown in Fig.~\ref{fig:pip} (right), alleviates the confirmation bias, and reduces over-fitting easy-to-learn data issues. Our contributions are summarized as follows: 1) we propose a \textit{unique} pseudo-labeling method \method for SSL in FL, which leverages the similarities between feature embeddings of unlabeled data and label anchor data; 2) we design a novel label contrastive loss to further improve the quality of pseudo labels; 3) we perform extensive experiments on three different datasets having different sizes of labeled anchor data and show that the proposed methods achieve the state-of-the-art performance and faster convergence rate.
 
 \begin{figure}[t]
@@ -626,22 +629,23 @@ In this way, instead of retaining the high-confidence data through solely model 
 \subsection{Federated Early-Exit}
 %%%
 
-Self-supervised learning (SSL) has achieved state-of-the-art (SOTA) results in numerous tasks, which typically benefit from vast amounts of unlabelled training data.  With the advancement of the internet of things (IoT), a substantial amount of user data, with the nature of privacy-sensitive and unlabelled, is generated daily from edge devices. 
+Self-supervised learning (SSL) has garnered significant results in many tasks, often profiting from extensive unlabelled data. With the proliferation of the Internet of Things (IoT), a considerable volume of privacy-sensitive and unlabelled user data is generated from edge devices daily.
 
-Federated learning (FL) can be harnessed to leverage this user data, enabling the learning of more robust representations. However, SSL models are typically large in size and notoriously resource-intensive to train, posing a challenge due to the diverse computational capabilities of client devices, some of which may not support the training of SSL models.
+Utilizing Federated Learning (FL) can help tap into this data, promoting the development of more robust models. However, the challenge lies in the large and resource-intensive nature of SSL models, especially given the varied computational capacities of client devices, some of which might not be suitable for training such models.
 
-*How do we train an SSL model in heterogeneous FL settings with different hardware for each client? How can we transfer the knowledge from the client’s models to a single global model for a more robust representation learning?* These are important and fundamental questions for SSL in FL.
+Key inquiries in this domain include: How can one train an SSL model in a heterogeneous FL environment where each client has distinct hardware? And, how can knowledge be transitioned from individual client models to a unified global model for enhanced representation learning?
 
-The proposal is to train SSL models with FL in a setting in which clients have different hardware. We don’t care about what happens after the training, and we want each client to contribute to improving the knowledge of the global model.
+The proposition involves training SSL models through FL where clients possess varied hardware capabilities. The primary focus post-training is the collective enhancement of the global model's knowledge. Distinctive elements when compared to ScaleFL and similar research are as follows.
 
-The pieces of **novelty** compared to ScaleFL and other works would be:
+First, our emphasis is on SSL models. The outcome of our approach is a comprehensive global model suitable for subsequent tasks. Although trained early exit networks might also be of use. In contrast, ScaleFL employs ResNet, MSDNet, and pre-trained BERT. ScaleFL is designed for model architectures that allow 2-D model partitioning and early exits.
 
-- We focus on **SSL models**, i.e. the final output of our procedure is a global full model that can be used for downstream tasks. Possibly, the trained early exit networks can be used as well. In ScaleFL, the authors use ResNet, MSDNet (multi-exit CNN architecture), and pre-trained BERT. ScaleFL is meant to work generally with models’ architectures allowing for 2-D model splitting and early exits.
-- The objective is to optimise the model architecture configuration **dynamically** to match the edge device computational budgets. ScaleFL only clusters computational budgets once before training and assumes a specific linear dependency between budgets and the number of model parameters. So, the model architectures for each group are fixed.
-- Considering an absolute and direct association between model configurations and clients’ budgets that does not need a full clients clustering before the beginning of the federated training. ScaleFL assumes that at least one client can operate on the full model, i.e. the group containing the most capable client is coupled with the full model. The other groups of clients are assigned to a corresponding level of complexity depending on their budgets at the beginning of the federated training. The levels of complexity are determined by a heuristic method.
-- Improve the selection of the configurations compared to ScaleFL, which relies too much on structural dependencies of the weights in the network.
-- Possibly improve the aggregation procedure compared to ScaleFL, which relies on the abovementioned structural dependencies and the self-distillation step.
+Secondly, we aim to dynamically adjust the model architecture to align with the computational budgets of edge devices. In comparison, ScaleFL determines computational budgets once pre-training and presumes a specific linear relationship between budgets and model parameters. Consequently, model architectures for each group are set.
 
+Additionally, we propose a direct correlation between model setups and clients' budgets without necessitating comprehensive client clustering before FL training commences. ScaleFL's methodology requires at least one client capable of handling the full model. This primary group is paired with the complete model, while other groups are aligned with varying complexity levels based on initial budgets. Complexity levels are established heuristically.
+
+Finally, We aim to refine the model configuration selection process, as ScaleFL excessively depends on the structural relationships of network weights.
+
+% We might also enhance the aggregation method, contrasting with ScaleFL that depends on structural relationships and a self-distillation phase.
 
 \chapter{Proposed Research} \label{Proposal}
 
@@ -660,23 +664,23 @@ In previous studies, the focus has been on utilizing secure linear layers to add
 \centering
     \includegraphics[width=0.7\linewidth]{quality.png}
 \caption{Pipeline for Federated Data Quality Control for Foundation Models.}
-\label{fig:pip}
+\label{fig:quality}
 \vspace{-5mm}
 \end{figure}
 
-\subsection{Data-Augmented FL}
+\subsection{Federated Data Augmentation}
 
-One of the earlier known works to use dataset augmentation to relieve heterogeneity is FedShare [19], in which the server transmits real examples from a public dataset to clients. 
+One of the earlier known works to use dataset augmentation to relieve heterogeneity is FedShare~\cite{https://doi.org/10.48550/arxiv.1806.00582}, in which the server transmits real examples from a public dataset to clients. 
 
-While only small number of examples are needed to significantly boost model performance, it is unrealistic to assume the server has examples for every or any label. In lieu of real examples, sample mixing is a popular augmentation strategy. Mixup [18] forms convex combinations of k examples (k-way mixup) and their labels, with weights drawn from common random distributions. Mixup and its privacy-improved variant InstaHide [5] produces pseudo-synthetic training data beneficial to improving model-robustness against adversarial examples.
+While only small number of examples are needed to significantly boost model performance, it is unrealistic to assume the server has examples for every or any label. In lieu of real examples, sample mixing is a popular augmentation strategy. Mixup forms convex combinations of k examples (k-way mixup) and their labels, with weights drawn from common random distributions. Mixup and its privacy-improved variant InstaHide produces pseudo-synthetic training data beneficial to improving model-robustness against adversarial examples.
 
-FedMix [17] was one of the earlier known works to use mixup to balance label-skew. To homogenize data distributions, k-way mixups of all client data and labels are constructed and sent up to the server, where it is then unioned and sent back down to clients for training. This approach can prove expensive over large client clusters, especially if the total data size across all clients is massive, and for smaller, C = 1 label-skewed clients, their mixups are easily decodable by other clients with rich, balanced data [3] due to information gleaned from the ”pseudo”-label – which will contain one entry. XORMixFL [15] also distributes mixed-client data via mixup and is intended for one-shot server-side training, as opposed to directly improving local training.
+% FedMix [17] was one of the earlier known works to use mixup to balance label-skew. To homogenize data distributions, k-way mixups of all client data and labels are constructed and sent up to the server, where it is then unioned and sent back down to clients for training. This approach can prove expensive over large client clusters, especially if the total data size across all clients is massive, and for smaller, C = 1 label-skewed clients, their mixups are easily decodable by other clients with rich, balanced data [3] due to information gleaned from the ”pseudo”-label – which will contain one entry. XORMixFL [15] also distributes mixed-client data via mixup and is intended for one-shot server-side training, as opposed to directly improving local training.
 
 \subsection{Federated Data Quality Control}
 
 Currently, the training of large-scale models heavily relies on public domain data. Recent studies indicate that the availability of such public data is nearing exhaustion. To further enhance the performance of large models, there is an urgent need to incorporate high-quality, domain-specific private data. However, due to their unique security and privacy attributes, private datasets become "accessible but invisible" resources. This poses significant challenges in quality control during model training. To address this, our research proposes a federated learning approach centered on data quality. By ensuring data privacy, we purposefully select multi-party private data that aligns with the "3H" principle (Helpful, Honest, Harmless) for language model training. The goal is not only to improve model performance but also to ensure alignment with human values.
 
-Technical Roadmap:
+The potential technical roadmap would be as follows, shown in Figure ~\ref{fig:quality}:
 
 Starting from quantifying the contribution of samples to model performance, we design an impact function to effectively identify and eliminate samples that compromise the model's performance and safety, enhancing both the overall model performance and human-machine alignment.
 
@@ -699,18 +703,27 @@ We introduce a rapid retraining technique based on meta-learning and machine for
 
 % The name EfficientNet suggests that the architecture is very efficient, but in what sense? There are many types of ‘efficiency’, but let’s consider two of them: parameter efficiency and computational efficiency.
 
-Parameter efficiency tries to optimize the ratio between the model performance (e.g. accuracy) and the amount of parameters used. Models which are efficient in terms of the amount of parameters tend to require less data to train and generalize better.
-
-Computational efficiency tries to optimize the ratio between model performance and the amount of computational time that needs to be spent. Depending on what is most crucial, computational efficiency could be calculated based on the time required to train the model, or the time required to do inference. 
-
 % Memory
 
-Large language models (LLMs) have become a cornerstone of natural language processing (Brown et al., 2020; Touvron et al., 2023a; OpenAI, 2023; Anil et al., 2023), and fine-tuning pre-trained LLMs has been shown very effective to improve their performance in various downstream tasks (Liu et al., 2019; Wei et al., 2021) and to enable them to align with human intents (Ouyang et al., 2022; Bai et al., 2022). However, fine-tuning LLMs with full parameter is prohibitively expensive, for example, fine-tuning a LLaMA-65B (Touvron et al., 2023a) model with AdamW (Loshchilov & Hutter, 2017) requires more than 1TB of GPU memory to store model parameter, gradient, and optimizer states (Rajbhandari et al., 2020).
+Fine-tuning LLMs with full parameter is prohibitively expensive, for example, fine-tuning a LLaMA-65B model with AdamW requires more than 1TB of GPU memory to store model parameter, gradient, and optimizer states.
 
-To reduce the memory of full-parameter fine-tuning, parameter-efficient fine-tuning (PEFT) methods are proposed to update only a small fraction of parameters, such as adapter weights (Houlsby et al., 2019; Hu et al., 2022) and prompt weights (Li & Liang, 2021; Lester et al., 2021). Among these methods, LoRA (Hu et al., 2022) has shown to achieve comparable performance than full-parameter fine-tuning, and it has been widely used in many applications (Dettmers et al., 2023).
-Specifically, LoRA adds a parallel low-rank adapter besides the weight of a linear layer, as shown in Figure 1(b), where W is the pre-trained weight, A and B are low-rank weights. Because LoRA freezes W and only updates smaller matrices A and B, its memory overhead for trainable parameter and corresponding gradient and optimizer states can be largely reduced, compared to full-parameter fine-tuning as shown in Figure 1(a), which can be regarded as updating W and freezing A and B. Furthermore, LoRA introduces no additional inference latency by merging the value of AB into W. However, LoRA still has limitations as it requires expensive activation memory consumption in LoRA layers. This is because the large input activation of X needs to be stored during the feed- forward pass, and used to construct the gradient of A during the back-propagation pass. It means LoRA cannot reduce the activation memory cost compared to full-parameter fine-tuning. For ex- ample, fine-tuning a LLaMA-65B with input sequence length of 2048 and batch size of 4 requires more than 50GB of activation memory (in 16-bit format) in all LoRA layers. To address it, existing methods select a part of linear layers for LoRA fine-tuning (Hu et al., 2022) or use activation recomputation (Chen et al., 2016), which however could affect fine-tuning performance or efficiency.
+To reduce the memory of full-parameter fine-tuning, parameter-efficient fine-tuning (PEFT) methods are proposed to update only a small fraction of parameters. Among these methods, LoRA has shown to achieve comparable performance than full-parameter fine-tuning, and it has been widely used in many applications.
 
-Future research would focus on adjusting activated weights in LoRA in a Federated manner, to adapt better according to personalised memory or computational budget. 
+Specifically, LoRA adds a parallel low-rank adapter besides the weight of a linear layer, as shown in Figure~\ref{fig:lora}, where W is the pre-trained weight, A and B are low-rank weights. However, LoRA still has limitations as it requires expensive activation memory consumption in LoRA layers. This is because the large input activation of X needs to be stored during the feed- forward pass, and used to construct the gradient of A during the back-propagation pass. It means LoRA cannot reduce the activation memory cost compared to full-parameter fine-tuning. For example, fine-tuning a LLaMA-65B with input sequence length of 2048 and batch size of 4 requires more than 50GB of activation memory (in 16-bit format) in all LoRA layers. 
+
+\begin{figure}[t]
+\centering
+    \includegraphics[width=0.4\linewidth]{lora.jpg}
+\caption{The reparametrization of LoRA~\cite{lora}.}
+\label{fig:lora}
+\vspace{-5mm}
+\end{figure}
+
+Therefore, future research will focus on adjusting activated weights in LoRA in a federated manner, combining activation recomputation and offloading techniques to better adapt according to personalized memory or computational budgets. And the project will be targeting at optimizing in both aspects.
+
+\paragraph{Parameter efficiency} tries to optimize the ratio between the model performance (e.g. accuracy) and the amount of parameters used. Models which are efficient in terms of the amount of parameters tend to require less data to train and generalize better.
+
+\paragraph{Computational efficiency} tries to optimize the ratio between model performance and the amount of computational time that needs to be spent. Depending on what is most crucial, computational efficiency could be calculated based on the time required to train the model, or the time required to do inference. 
 
 % \section{Communication}
 
@@ -735,7 +748,6 @@ Future research would focus on adjusting activated weights in LoRA in a Federate
 
 \section{Year 2}
 \paragraph{Michaelmas Term} 
-
 • Improve previous work on Multilingual Federated Prompt Tuning and ICLR Rebuttals. 
 
 • Continue work on building Federated Finetuning experimental platform based on Flower. 
