@@ -28,43 +28,12 @@
 % Citations using numbers
 \usepackage[numbers]{natbib}
 
-\usepackage{hyperref}       % hyperlinks
-\usepackage{url}            % simple URL typesetting
-\usepackage{booktabs}       % professional-quality tables
-\usepackage{amsfonts}       % blackboard math symbols
-\usepackage{amsthm}
-\usepackage{mathtools}
-\usepackage{nicefrac}       % compact symbols for 1/2, etc.
-\usepackage{microtype}      % microtypography
-\usepackage{xcolor}         % colors
-\usepackage{color,soul}
-\usepackage{graphicx}  
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage{bbm}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-
-\usepackage{amsmath,amsfonts,amssymb}
-%\usepackage[noend]{algpseudocode}
-\usepackage{capt-of}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{siunitx}
-\usepackage{enumitem}
-\usepackage{todonotes}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage[most]{tcolorbox}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Thesis meta-information
 %%
 
 %% The title of the thesis:
-\title{Secure Federated Fine-Tuning \\ For Foundation Models}
+\title{Secure Federated Learning for Foundation Models}
 
 %% The full name of the author (e.g.: James Smith):
 \author{Wanru Zhao}
@@ -159,15 +128,15 @@
 
 \section{Motivation}
 
-In the panorama of technological evolution, Artificial Intelligence (AI) stands as a monumental pillar, transforming the way we comprehend, interact with, and harness digital processes. Over recent decades, AI has transitioned from being a mere theoretical concept to a tangible force reshaping industries and individual experiences alike. Recent years, in particular, have been particularly dynamic for this domain, with transformative breakthroughs continually emerging. One such groundbreaking evolution is the advent of Foundation Models (FM)~\cite{BHAA+21}.
+In the panorama of technological evolution, Artificial Intelligence (AI) stands as a monumental pillar, transforming the way we comprehend, interact with, and harness digital processes. Over recent decades, AI has transitioned from being a mere theoretical concept to a tangible force reshaping industries and individual experiences alike. Recent years, in particular, have been particularly dynamic for this domain, with transformative breakthroughs continually emerging. One such groundbreaking evolution is the advent of Foundation Models (FM) [1].
 
-Foundation Models, characterized by their colossal scale, comprehensive pre-trained knowledge, and benchmark-setting performance capabilities, signify a new epoch in the realm of AI. Models such as the GPT series ~\cite{zhang2023gptfl} from OpenAI, BERT~\cite{mBERT} and PaLM~\cite{anil2023palm} from Google, and other notable contributions like Stable Diffusion~\cite{rombach2021highresolution}, Segment Anything~\cite{kirillov2023segany}, and LLaMA~\cite{touvron2023llama, touvron2023llama2} from Meta, have not just enriched the AI landscape but have redefined its boundaries. These models have facilitated a deeper understanding of natural languages, generating not just coherent but also highly contextually pertinent responses. Their zero-shot capabilities further underscore their transformative nature, opening doors to a plethora of AI applications.
+Foundation Models, characterized by their colossal scale, comprehensive pre-trained knowledge, and benchmark-setting performance capabilities, signify a new epoch in the realm of AI. Models such as the GPT series [2, 3, 4, 5] from OpenAI, BERT [7] and PaLM [8, 9] from Google, and other notable contributions like Stable Diffusion [10], Segment Anything [11], and LLaMA [12] from Meta, have not just enriched the AI landscape but have redefined its boundaries. These models have facilitated a deeper understanding of natural languages, generating not just coherent but also highly contextually pertinent responses. Their zero-shot capabilities further underscore their transformative nature, opening doors to a plethora of AI applications.
 
 While the intrinsic value of these models is undeniable, their true potential is accentuated when tailored for specific downstream tasks. As AI has grown in sophistication, so too have the demands of its users. With the unprecedented performance and generalization capabilities of FMs, organizations and individuals worldwide are motivated to fine-tune these behemoths to cater to specialized tasks. This practice of fine-tuning not only amplifies the model's capabilities but also ensures that AI outputs are directly aligned with specific real-world needs.
 
-However, the journey to harness the vast capabilities of these models is not straightforward. Real-world implementations bring forth challenges that are both intricate and multifaceted. Centralizing the fine-tuning process of such extensive models is riddled with complexities. One major concern is the increasing emphasis on data privacy. In an era where data is seen as both an asset and a liability, regulations such as GDPR and HIPAA have been instituted to ensure that individuals' privacy rights are not infringed~\cite{villalobos2022run}. Consequently, these regulations pose significant challenges to centralized data storage and processing. The distributed nature of training data, coupled with the extensive computational resources required to establish and manage centralized data storage, further compounds these challenges.
+However, the journey to harness the vast capabilities of these models is not straightforward. Real-world implementations bring forth challenges that are both intricate and multifaceted. Centralizing the fine-tuning process of such extensive models is riddled with complexities. One major concern is the increasing emphasis on data privacy. In an era where data is seen as both an asset and a liability, regulations such as GDPR and HIPAA have been instituted to ensure that individuals' privacy rights are not infringed [13, 14]. Consequently, these regulations pose significant challenges to centralized data storage and processing. The distributed nature of training data, coupled with the extensive computational resources required to establish and manage centralized data storage, further compounds these challenges.
 
-Recognizing these multifarious challenges, the realm of AI has given birth to Federated Learning (FL) – a paradigm shift in machine learning approaches. Eschewing the traditional norms of centralized data collection and storage, FL emphasizes training a cohesive model across a vast network of distributed data sources without the imperative of direct data exchange. This revolutionary approach not only resonates with sectors like healthcare~\cite{li2019privacypreserving}, finance~\cite{zhang2023privacypreserving}, personalized recommendations~\cite{10.1145/3394486.3403176}, and consumer products~\cite{hard2019federated}, but it also offers a pragmatic and ethically-aligned solution in today's data-centric world.
+Recognizing these multifarious challenges, the realm of AI has given birth to Federated Learning (FL) – a paradigm shift in machine learning approaches. Eschewing the traditional norms of centralized data collection and storage, FL emphasizes training a cohesive model across a vast network of distributed data sources without the imperative of direct data exchange. This revolutionary approach not only resonates with sectors like healthcare [15, 16], finance [17, 18], video surveillance [19, 20, 21, 22], personalized recommendations [23], and consumer products [24], but it also offers a pragmatic and ethically-aligned solution in today's data-centric world.
 
 At its core, FL's primary allure is its dual ability to uphold data privacy principles while simultaneously facilitating collaborative training across geographically and institutionally decentralized platforms. By ensuring that data remains anchored within its original devices or organizational boundaries, FL offers a harmonious blend of security and accessibility. This means organizations can access the vast computational resources and diverse data available globally without transgressing the sacrosanct bounds of privacy and data regulations.
 
@@ -194,7 +163,7 @@ In summation, as we navigate the vast and intricate world of AI in the era of Fo
 % The proposed research builds upon the work done by Zhao et al.~\cite{} and Zhao et al.~\cite{} on Federated Learning. The proposed system as shown in Fig ~\ref{}. 
 
 % The potential contributions to the field of Federated Learning include:
-In the nascent domain of Federated Learning (FL), the utility of leveraging distributed data sources stands paramount. Not only does it usher in an expansive availability of data for Foundation Models (FM), but it also heralds a new paradigm where computation is elegantly shared. This consequently disperses the training workload across a multitude of FL participants. Guided by these pivotal insights, the thrust of this PhD research unfurls. We ardently delineate the salient contributions that this research seeks to confer upon Federated Fine-tuning for Foundation Models:
+In the nascent domain of Federated Learning (FL), the utility of leveraging distributed data sources stands paramount. Not only does it usher in an expansive availability of data for Foundation Models (FM), but it also heralds a new paradigm where computation is elegantly shared. This consequently disperses the training workload across a multitude of FL participants. Guided by these pivotal insights, the thrust of this PhD research unfurls, as elucidated in Fig ~\ref{}. We ardently delineate the salient contributions that this research seeks to confer upon Federated Fine-tuning for Foundation Models:
 
 1. \textbf{From the Data Perspective}: Venturing into the realms of federated semi-supervised and self-supervised scenarios, this work introduces a suite of innovative algorithms focused on data labeling, augmentation, and quality assessment. The imperative of privacy preservation in large-scale models, juxtaposed with the demand for top-tier data, presents a unique challenge. Our proposed strategies bridge this gap, equipping researchers and practitioners with effective methodologies to ensure the procurement of high-quality data. Consequently, this paves the way for the generation of high-quality models, embedding precision, and reliability while adhering to the tenets of privacy preservation.
 
@@ -255,19 +224,8 @@ As a result, it is impossible to execute naïve aggregation using classic federa
 % A variety of approaches have been proposed for client personalization. Some algorithms directly learn the personalized models [62, 43], but the majority obtain the personalized model after global model learning by fine-tuning techniques such as basic fine-tuning [46, 48], regularised fine-tuning [34, 59], and selective parameter fine-tuning [17, 11, 2, 37]. Recent benchmarks [45, 9] showed that different personalized FL methods suffer from lack of comparable evaluation setups. In particular, dataset- and experiment-specific personalization strategies are often required to achieve state-of-the- art performance. Intuitively, different datasets and FL scenarios require different personalization strategies. For example, scenarios with greater or lesser heterogeneity among clients, would imply different strengths of personalization are optimal. Furthermore, exactly how that personalization should be conducted might depend on whether the heterogeneity is primarily in marginal label shift, marginal feature shift, or conditional shift. None of these facets can be well addressed by a one size fits all personalization algorithm. Furthermore, we identify a previously understudied issue: even for a single federated learning scenario, heterogeneous clients may require different personalization strategies. For example, the optimal personalization strategy will have client-wise dependence on whether that client is more or less similar to the global model in either marginal or conditional data distributions. Existing works that learn personalized strategies through the use of personalized weights are not scalable to larger setups and models [55, 14]. On the other hand, the few studies that attempt to optimize hyperparameters for fine-tuning do not sufficiently address this issue as they either learn a single set of personalization hyperparameters [65, 22] and/or learn a hyperparameter distribution without taking account of the client’s data distribution [30].
 
 
-\subsection{Federated Learning Applications}
 
-% Federated Learning (FL) is a machine learning paradigm that enables the training of a global model using decentralized datasets without requiring the sharing of raw and sensitive data from participating parties \citep{fedavg, fedprox, yang2019federated}. Under FL, individual institutions or devices train a common global model collaboratively, agreeing on a central server to orchestrate the learning and perform model aggregation. 
-
-In terms of data partitioning, FL can be categorized as either horizontal or vertical scenarios. Most existing works focus on horizontal FL (HFL), which requires all participants to use the same feature space but different sample spaces\citep{yang2019federated}. This partitioning scheme is usually found in the cross-device setup where clients are often mobile or IoT devices with heterogeneous datasets and resources under complex distributed networks \citep{yu2021toward, qiu2021zerofl}. Under Vertical FL (VFL) \citep{wei2022vertical}, however, data points are partitioned across clients, which means different clients might hold different features for the same sample. This is often found in cross-silo setups where participating clients, such as hospitals and research institutions, may hold complementary pieces of information for the same data points. For example, two different hospitals may hold different clinical data for the same patient.
-
-
-%\textbf{privacy is not guaranteed, and we are proposing more secure way to do vertical FL.}
-The need for VFL has arisen massively in the industry these years \citep{vfl, liu2020asymmetrical}. For example, a financial institution would like to train a financial crime detection model, but it only has limited features in its own institution that restrict performance. The institution would like to have access to more private information, such as account information, that various banks might have. However, this is a deal breaker for financial applications as such data is very sensitive, and legal restrictions (e.g., GDPR) can prevent it from being shared across institutions. Another example will be in the commercial ad ranking systems, in the sense that each organization might have different information for the same customer, but the label (the click rate) will only be stored in the application platform. With VFL, institutions and companies that own only small and fragmented data have constantly been looking for other institutions to collaboratively develop a shared model for maximizing data utilization \citep{li2021survey}. 
-
-Due to their different data structures, training procedures for HFL and VFL can be very different. Each client in HFL trains a complete copy of the global model on their local dataset and sends model updates to a centralized server for aggregation. Under VFL,  each client, holding certain features of the whole dataset, contributes to a sub-module of the global model. This means that intermediate activations or gradients need to be shared between clients during the training process, posing a potential risk for privacy leakage, as the original raw data can be reconstructed from said gradients \citep{dlg, idlg, jin2021cafe,yin2021see}. While most research has focused on designing methods to train the global model under VFL better, fewer efforts have been devoted to providing a secure way of training. %\hl{maybe if we have background section this part can be removed} 
-
-\subsubsection{Vertical Federated Learning} \label{sec:problem_setup}
+\subsection{Vertical Federated Learning} \label{sec:problem_setup}
 % Different from normal Federated Learning (), a general form of Vertical Federated Learning, where data are partitioned both in the sample and feature spaces.
 Vertical federated learning (VFL) is a promising category of federated learning for the scenario where data is vertically partitioned and distributed among parties. 
 Specifically, we investigate $C$ class classification problem defined over a compact feature space $\mathcal{X}$ and a label space $\mathcal{Y} = [C]$, where $[L] = \{ 1,...,C \}$. Since each client only holds a subset of the whole feature space, we can divide the feature into the finite number of sub-spaces $\{\mathcal{X}_1,...,\mathcal{X}_n \}$, and each client holds feature from one sub-space. Following the setup as in previous literature \citep{vfl}, we define two kinds of clients in the VFL settings. The first type is the \emph{active party} ($Client A$), which holds all the samples with the ground-truth labels and multiple features, and there usually is only one active party. The second type is called the \emph{passive parties}, which only holds some other features.  
@@ -277,7 +235,6 @@ Let $f$ be the function for the neural network parameterized over the hypothesis
 
 In a horizontal FL scenario, where datasets are horizontally partitioned, FL solutions are typically derived from a centralized one, providing an upper-bound target efficiency. However, this approach is not well suited in the case of vertically-partitioned FL, where different feature types are distributed across different participants.
 
-%Training in vertical FL setting, as shown in Figure \ref{fig:vfedsec}, consists of two parts. 
 Training in a vertical FL setting consists of two parts. The first part is the local module, which outputs an intermediate output ($H$). The local module can be embedding layers to extract embedding from each feature. The second part is the global module hosted by the server, which takes the embeddings from each client and further propagates to make the final predictions. It is worth noticing that if two clients are from the same client cluster, they will have the same architecture of the local module, which means that their local module can be updated via the horizontal FL way, and use aggregation methods such as FedAvg \citep{fedavg}. 
 
 
@@ -291,78 +248,116 @@ Training in a vertical FL setting consists of two parts. The first part is the l
 
 Foundation models, often referred to as large-scale pretrained models, have garnered significant attention in the realm of artificial intelligence and machine learning. These models, exemplified by architectures such as GPT-3, BERT, and T5, have demonstrated unprecedented capabilities in a wide range of tasks, from natural language processing to computer vision.
 %1. Evolution of Foundation Models
-The concept of foundation models can be traced back to the early days of transfer learning. Researchers discovered that models pretrained on large datasets could be fine-tuned on specific tasks with smaller datasets, achieving remarkable performance~\cite{yosinski2014transferable}. This paradigm shift led to the development of models like BERT~\cite{mBERT}, which was pretrained on vast amounts of text and later fine-tuned for specific NLP tasks.
+The concept of foundation models can be traced back to the early days of transfer learning. Researchers discovered that models pretrained on large datasets could be fine-tuned on specific tasks with smaller datasets, achieving remarkable performance (Yosinski et al., 2014). This paradigm shift led to the development of models like BERT (Devlin et al., 2018), which was pretrained on vast amounts of text and later fine-tuned for specific NLP tasks.
 %2. Capabilities and Applications
-The capabilities of foundation models are vast. GPT-3, developed by OpenAI, showcased the ability to generate human-like text, answer questions, translate languages, and even write code~\cite{brown2020language}. Similarly, models like ViT~\cite{dosovitskiy2020image} have demonstrated the potential of transformer architectures in computer vision tasks.
+The capabilities of foundation models are vast. GPT-3, developed by OpenAI, showcased the ability to generate human-like text, answer questions, translate languages, and even write code (Brown et al., 2020). Similarly, models like ViT (Dosovitskiy et al., 2020) have demonstrated the potential of transformer architectures in computer vision tasks.
 %3. Challenges and Criticisms
-Despite their capabilities, foundation models are not without challenges. Training these models requires vast computational resources, leading to concerns about the environmental impact and the centralization of AI research~\cite{strubell2019energy}. Additionally, due to their black-box nature, these models often lack interpretability, raising concerns in critical applications like healthcare and finance.
+Despite their capabilities, foundation models are not without challenges. Training these models requires vast computational resources, leading to concerns about the environmental impact and the centralization of AI research (Strubell et al., 2019). Additionally, due to their black-box nature, these models often lack interpretability, raising concerns in critical applications like healthcare and finance.
 %4. Ethical Considerations
-The scale and capabilities of foundation models have also brought forth ethical considerations. Issues of bias~\cite{StochasticParrots}, misinformation, and the potential misuse of generated content are at the forefront of discussions in the AI community.
+The scale and capabilities of foundation models have also brought forth ethical considerations. Issues of bias (Bender et al., 2021), misinformation, and the potential misuse of generated content are at the forefront of discussions in the AI community.
 %5. Future Directions
 The future of foundation models is promising. With ongoing research in areas like model efficiency, interpretability, and robustness, the next generation of foundation models is poised to be more accessible and reliable. Additionally, the integration of these models into real-world applications will be a critical area of exploration.
 
-% \subsection{Pretrain, RLHF and SFT}
+\subsection{Pretrain, RLHF and SFT}
 
 \subsection{Finetuning and Prompting}
-Pre-trained language models (PLMs) have manifested superior performance in various natural language processing tasks~\cite{mBERT}. The most common way to adapt pre-trained models to down-stream tasks is to fine-tune all the parameters~\cite{lv2023parameter}. However, pre-trained models typically incurs large memory footprint. For example, BERT model~\cite{mBERT} consists up to 300 million parameters; T5~\cite{xue2020mt5} comprises up to 11 billion parameters and GPT-3~\cite{zhang2023gptfl} contains up to 175 billion parameters. When building a NLP system upon these pre-trained models, we usually handle multiple tasks that arrive simultaneously. Given a large number of down-stream tasks, full fine-tuning requires that each task maintains a separated copy of large models. The resulting memory consumption is prohibitively expensive.
+Pre-trained language models (PLMs) have manifested superior performance in various natural language processing tasks (Devlin et al., 2019; Liu et al., 2019; He et al., 2021b; Radford et al., 2019; Brown et al., 2020). The most common way to adapt pre-trained models to down-stream tasks is to fine-tune all the parameters (full fine-tuning, Qiu et al. (2020); Raffel et al. (2020)). However, pre-trained models typically incurs large memory footprint. For example, BERT model (Devlin et al., 2019) consists up to 300 million parameters; T5 (Raffel et al., 2020) comprises up to 11 billion parameters and GPT-3 (Brown et al., 2020) contains up to 175 billion parameters. When building a NLP system upon these pre-trained models, we usually handle multiple tasks that arrive simultaneously (Radford et al., 2019). Given a large number of down-stream tasks, full fine-tuning requires that each task maintains a separated copy of large models. The resulting memory consumption is prohibitively expensive.
+To address this issue, researchers have proposed two main lines of research to reduce the fine-tuning parameters, while maintaining or even improving the performance of PLMs. Specifically, one line of research focuses on adding small neural modules to PLMs and fine-tune only these modules for each task – the base model is kept frozen and shared across tasks. In this way, only a small number of task-specific parameters are introduced and updated, greatly enhancing the practicality of large models. For example, adapter tuning (Houlsby et al., 2019; Rebuffi et al., 2017; Pfeiffer et al., 2020; He et al., 2022) inserts small neural modules called adapters between the layers of the base model. Prefix tuning (Li & Liang, 2021) and prompt tuning (Lester et al., 2021) attach additional trainable prefix tokens to the input or hidden layers of the base model. These methods have shown to achieve comparable performance to full fine-tuning, while only updating less than 1\% of the original model parameters, significantly releasing the memory consumption.
 
-To address this issue, researchers have proposed two main lines of research to reduce the fine-tuning parameters, while maintaining or even improving the performance of PLMs. Specifically, one line of research focuses on adding small neural modules to PLMs and fine-tune only these modules for each task – the base model is kept frozen and shared across tasks. In this way, only a small number of task-specific parameters are introduced and updated, greatly enhancing the practicality of large models. For example, adapter tuning~\cite{adapter} inserts small neural modules called adapters between the layers of the base model. Prefix tuning ~\cite{Prefix-Tuning} and prompt tuning ~\cite{prompt_tuning} attach additional trainable prefix tokens to the input or hidden layers of the base model. These methods have shown to achieve comparable performance to full fine-tuning, while only updating less than 1\% of the original model parameters, significantly releasing the memory consumption.
-
-Another line of research proposes to model the incremental update of the pre-trained weights in a parameter-efficient way, without modifying the model architecture~\cite{bitfit}. Given a pre-trained weight matrix1 W (0) , for example, diff pruning~\cite{Prefix-Tuning} models its incremental update $\Delta$ as a sparse matrix. Diff pruning initializes $\Delta$ as the same dimension as W (0) and then prunes $\Delta$ element-wise based on the magnitude of the entries. As such, diff pruning can increase the parameter efficiency substantially by adaptively retaining important updates and pruning unimportant ones. Nonetheless, diff pruning has several limitations. First, it relies on low-level implementation to speed up the computation of unstructured sparse matrices, which is not well supported by existing deep learning frameworks. Therefore, we have to store $\Delta$ as a dense matrix during training. Second, it needs to update every entry of $\Delta$ with their gradients and then prune them. This results in similar computational cost as full fine-tuning~\cite{lora}.
-
+Another line of research proposes to model the incremental update of the pre-trained weights in a parameter-efficient way, without modifying the model architecture (Zaken et al., 2021; Guo et al., 2020; Hu et al., 2022). Given a pre-trained weight matrix1 W (0) , for example, diff pruning (Guo et al., 2020) models its incremental update ∆ as a sparse matrix. Diff pruning initializes ∆ as the same dimension as W (0) and then prunes ∆ element-wise based on the magnitude of the entries. As such, diff pruning can increase the parameter efficiency substantially by adaptively retaining important updates and pruning unimportant ones. Nonetheless, diff pruning has several limitations. First, it relies on low-level implementation to speed up the computation of unstructured sparse matrices, which is not well supported by existing deep learning frameworks. Therefore, we have to store ∆ as a dense matrix during training. Second, it needs to update every entry of ∆ with their gradients and then prune them. This results in similar computational cost as full fine-tuning (Guo et al., 2020).
 % \subsection{Inference}
 
 % Quantized Inference and Matrix Factorization
 
-\subsection{Data-centric Techniques} 
-
-In the past, AI was often viewed as a model-centric field, where the focus was on advancing model designs given fixed datasets. However, the overwhelming reliance on fixed datasets does not necessarily lead to better model behavior in real-world applications, as it overlooks the breadth, difficulty, and fidelity of data to the underlying problem~\cite{mazumder2023dataperf}. Moreover, the models are often difficult to transfer from one problem to another since they are highly specialized and tailored to specific problems. Furthermore, undervaluing data quality could trigger data cascades, causing negative effects such as decreased accuracy and persistent biases. This can severely hinder the applicability of AI systems, particularly in high-stakes domains.
-
-
-Consequently, the attention of researchers and practitioners has gradually shifted toward data-centric AI to pursue data excellence~\cite{aroyo2021data}. Data-centric AI places a greater emphasis on enhancing the quality and quantity of the data with the model relatively more fixed. While this transition is still ongoing, we have already witnessed several accomplishments that shed light on its benefits. For example, the advancement of large language models is greatly dependent on the use of huge datasets. Compared to GPT-2, GPT-3 only made minor modifications in the neural architecture while spending efforts collecting a significantly larger high-quality dataset for training. ChatGPT, a remarkably successful application of GPT-3, adopts a similar neural architecture as GPT-3 and uses a reinforcement learning from human feedback procedure~\cite{NIPS2017_d5e2c0ad} to generate high-quality labeled data for fine-tuning. A new approach, known as prompt engineering, has seen significant success by focusing solely on tuning data inputs. The benefits of data-centric approaches can also be validated by practitioners. For instance, Landing AI, a computer vision company, observes improved accuracy, reduced development time, and more consistent and scalable methods from the adoption of data-centric approaches. All these achievements demonstrate the promise of data-centric AI.
-
-
-\section{Semi-Supervised Learning} 
-
-Semi-supervised learning (SSL) is a general problem of learning with partially labeled data, especially when the amount of unlabeled data is much larger than labeled ones \citep{zhou2005tri, rasmus2015semi}. The standard SSL method involves giving unlabeled data pseudo-labels \citep{lee2013pseudo} and then using these pseudo-labels as hard labels for supervised training. Consistency regularization~\citep{bachman2014learning} refers to methods of training models via minimizing the distance among stochastic outputs, which can be achieved through different ways of weak or strong augmentations~\citep{cubuk2020randaugment, thulasidasan2019mixup, french2017self}. Also, methods such as MixMatch~\citep{mixmatch} and FixMatch~\citep{fixmatch} put a threshold on the model prediction to only retain artificial labels on those with the most significant class probability falling above a pre-defined level.  
-
-\subsection{Federated Semi-Supervised Learning.} Federated semi-supervised learning (FSSL) represents the federated variant of SSL. In this context, the data stored on the client side may or may not be labeled. Given a dataset $\mathcal{D} = \{ \textbf{x}_i,y_i \}^N_{i=1}$, $\mathcal{D}$ is split into a labeled set $\mathcal{S}= \{ \textbf{x}_i,y_i \}^S_{i=1}$, which will be called \textit{Anchor Data} in our paper; and an unlabeled set $\mathcal{U}= \{ \textbf{x}_i,y_i \}^U_{i=1}$ as in the standard semi-supervised learning. Following the standard communication efficient FL training~\citep{fedavg}, each selected client can train multiple local epochs before sending the updated model parameters to the central server for aggregation. However, taking the off-the-shelf SSL method and directly applying it to FL cannot achieve communication-efficient FL training. For example, techniques such as FixMatch~\citep{fixmatch} or Mixmatch~\citep{mixmatch} require each mini-batch to sample from both labeled and unlabeled data samples with a carefully tuned ratio, making it only applicable with FedSGD rather than FedAvg. 
-
-FedMatch~\citep{fedmatch} splits model parameters for labeled servers and unlabeled clients separately. FedRGD~\citep{zhang2021improving} trains and aggregates the model of the labeled server and unlabeled clients in parallel with the group-side re-weighting scheme while replacing the batch normalization (BN) to group normalization (GN) layers. SemiFL~\citep{semifl} combines the centralized semi-supervised learning method MixMatch~\citep{mixmatch} and FixMatch~\citep{fixmatch} together with an alternate training scheme to achieve the current state-of-the-art performance, and it will serve as a baseline in our paper.
-
-
+\subsection{Data-Centric Method} 
 
 \section{Secure Aggregation}
-
-Secure Aggregation is a class of Secure Multi-Party Computation algorithms wherein a group of mutually distrustful parties $u \in \mathcal{U}$ each hold a private value $x_u$ and collaborate to compute an aggregate value, such as the sum $\sum_{u \in \mathcal{U}} x_u$, without revealing to one another any information about their private value except what is learnable from the aggregate value itself. 
 
 In the context of efficient secure aggregation for VFL, several related papers have contributed to the understanding and improvement of privacy, utility, and security aspects in VFL. A comprehensive literature review \citep{vfl} provides an overview of VFL and discusses various protection algorithms. However, it does not specifically address efficient secure aggregation. Another study \citep{dpvfl} focuses on integrating differential privacy (DP) techniques into VFL, but it does not explicitly cover efficient secure aggregation either. 
 \citet{tradeoffvfl} propose a framework to evaluate the privacy-utility trade-off in VFL, highlighting the limitations of existing approaches like Homomorphic Encryption (HE) and Multi-party Computation (MPC) in terms of computation and communication overheads, and \citet{cai2023secure} apply HE to Split Neural Networks (Split NN) for improved security. \citet{zheng2022making} presents a heuristic approach to make Split Learning resilient to label leakage, albeit at the cost of accuracy. \citet{sun2022label} explore label leakages from forward embeddings and their associated protection methods, which can cause a decrease in accuracy. Although these papers contribute to the understanding of VFL, there is a research gap in efficient secure aggregation techniques for VFL that needs to be addressed. The method proposed by \citet{liu2020asymmetrical} only tries to protect the sample IDs, rather than all the raw private data; \citet{chen2020vafl} perturbed local embedding to ensure data privacy and improve communication efficiency, which has strict requirements for the embedding and can impact the overall performance. There are also BlindFL \citep{fu2022blindfl}, ACML \citep{zhang2020acml}, and PrADA \citep{ kang2022prada} which are all homomorphic encryption (HE) based solutions. These approaches often incur significant communication and computation overheads. Moreover, their fixed design cannot be extended to multiple-party scenarios.
 
+\section{Semi-Supervised Learning.} Semi-supervised learning (SSL) is a general problem of learning with partially labeled data, especially when the amount of unlabeled data is much larger than labeled ones \citep{zhou2005tri, rasmus2015semi}. The standard SSL method involves giving unlabeled data pseudo-labels \citep{lee2013pseudo} and then using these pseudo-labels as hard labels for supervised training. Consistency regularization~\citep{bachman2014learning} refers to methods of training models via minimizing the distance among stochastic outputs, which can be achieved through different ways of weak or strong augmentations~\citep{cubuk2020randaugment, thulasidasan2019mixup, french2017self}. Also, methods such as MixMatch~\citep{mixmatch} and FixMatch~\citep{fixmatch} put a threshold on the model prediction to only retain artificial labels on those with the most significant class probability falling above a pre-defined level.  
+
+\section{Federated Semi-Supervised Learning.} Federated semi-supervised learning (FSSL) represents the federated variant of SSL. In this context, the data stored on the client side may or may not be labeled. Given a dataset $\mathcal{D} = \{ \textbf{x}_i,y_i \}^N_{i=1}$, $\mathcal{D}$ is split into a labeled set $\mathcal{S}= \{ \textbf{x}_i,y_i \}^S_{i=1}$, which will be called \textit{Anchor Data} in our paper; and an unlabeled set $\mathcal{U}= \{ \textbf{x}_i,y_i \}^U_{i=1}$ as in the standard semi-supervised learning. Following the standard communication efficient FL training~\citep{fedavg}, each selected client can train multiple local epochs before sending the updated model parameters to the central server for aggregation. However, taking the off-the-shelf SSL method and directly applying it to FL cannot achieve communication-efficient FL training. For example, techniques such as FixMatch~\citep{fixmatch} or Mixmatch~\citep{mixmatch} require each mini-batch to sample from both labeled and unlabeled data samples with a carefully tuned ratio, making it only applicable with FedSGD rather than FedAvg. 
+
+FedMatch~\citep{fedmatch} splits model parameters for labeled servers and unlabeled clients separately. FedRGD~\citep{zhang2021improving} trains and aggregates the model of the labeled server and unlabeled clients in parallel with the group-side re-weighting scheme while replacing the batch normalization (BN) to group normalization (GN) layers. SemiFL~\citep{semifl} combines the centralized semi-supervised learning method MixMatch~\citep{mixmatch} and FixMatch~\citep{fixmatch} together with an alternate training scheme to achieve the current state-of-the-art performance, and it will serve as a baseline in our paper.
 
 \chapter{Completed Work} \label{YearOne}
+\section{Secure Layer in Federated Learning}
+
+%In 2020, financial fraud in the UK amounted to £783.8 million~\cite{ukfinance}. Efficient crime prevention at such a massive scale necessitates the use of automatic, real-time detection of fraudulent transactions. Machine learning (ML) solutions to this problem have generally been developed within the field of anomaly detection~\cite{chandola2009anomaly} (AD) and gained special attention thanks to recent advances in deep learning~\cite{pang2021deep}. However, a fundamental bottleneck in applying these ML methods is the demand for large amounts of data to be collected in one single logical compute location during training time. This is a \textit{deal breaker} for financial applications as such data is very sensitive, and legal restrictions (e.g., GDPR) can prevent it from being shared across institutions. 
+
+%\textbf{why FL and why vertical FL} 
+Federated Learning (FL) is a machine learning paradigm that enables the training of a global model using decentralized datasets without requiring the sharing of raw and sensitive data from participating parties \citep{fedavg, fedprox, yang2019federated}. Under FL, individual institutions or devices train a common global model collaboratively, agreeing on a central server to orchestrate the learning and perform model aggregation. 
+
+In terms of data partitioning, FL can be categorized as either horizontal or vertical scenarios. Most existing works focus on horizontal FL (HFL), which requires all participants to use the same feature space but different sample spaces\citep{yang2019federated}. This partitioning scheme is usually found in the cross-device setup where clients are often mobile or IoT devices with heterogeneous datasets and resources under complex distributed networks \citep{yu2021toward, qiu2021zerofl}. Under Vertical FL (VFL) \citep{wei2022vertical}, however, data points are partitioned across clients, which means different clients might hold different features for the same sample. This is often found in cross-silo setups where participating clients, such as hospitals and research institutions, may hold complementary pieces of information for the same data points. For example, two different hospitals may hold different clinical data for the same patient.
+
+
+%\textbf{privacy is not guaranteed, and we are proposing more secure way to do vertical FL.}
+The need for VFL has arisen massively in the industry these years \citep{vfl, liu2020asymmetrical}. For example, a financial institution would like to train a financial crime detection model, but it only has limited features in its own institution that restrict performance. The institution would like to have access to more private information, such as account information, that various banks might have. However, this is a deal breaker for financial applications as such data is very sensitive, and legal restrictions (e.g., GDPR) can prevent it from being shared across institutions. Another example will be in the commercial ad ranking systems, in the sense that each organization might have different information for the same customer, but the label (the click rate) will only be stored in the application platform. With VFL, institutions and companies that own only small and fragmented data have constantly been looking for other institutions to collaboratively develop a shared model for maximizing data utilization \citep{li2021survey}. 
+
+Due to their different data structures, training procedures for HFL and VFL can be very different. Each client in HFL trains a complete copy of the global model on their local dataset and sends model updates to a centralized server for aggregation. Under VFL,  each client, holding certain features of the whole dataset, contributes to a sub-module of the global model. This means that intermediate activations or gradients need to be shared between clients during the training process, posing a potential risk for privacy leakage, as the original raw data can be reconstructed from said gradients \citep{dlg, idlg, jin2021cafe,yin2021see}. While most research has focused on designing methods to train the global model under VFL better, fewer efforts have been devoted to providing a secure way of training. %\hl{maybe if we have background section this part can be removed} 
+
+
+%\textbf{want to say also that our method won't impact the overall performance by adding the secure aggregation.}
+
+In this work, we present \emph{vFedSec} - an efficient and privacy-preserving way of training under the Vertical FL setup. %We propose this novel design, called \emph{vFedSec} in Section \ref{sec:secagg}, for training VFL securely and efficiently. 
+Section \ref{sec:secagg} describes our proposed design and introduces its core component, the architecture-agnostic \emph{Secure Layer}.
+% \emph{vFedSec} applies the idea of Secure Aggregation, which masks intermediate outputs and gradients using noise when communicating data with the server. 
+We provide a robust theoretical justification showing that our proposed method does not adversely affect training performance and private information is protected through the Secure Layer. To validate our claims empirically, we have conducted comprehensive experiments over four varied datasets of differing data volumes and model architectures, as detailed in Section \ref{sec:exp}. The results substantiate that our vFedSec imposes negligible overhead in all cases. Moreover, our method demonstrates a remarkable $\geq 690$x speedup and $\geq 9.6$x decrease in communication costs when compared to the resource-intensive homomorphic encryption (HE) techniques, thus affirming its superior computational and communication efficiency. % We demonstrate theoretically that our method does not impact training performance and private information is protected through the Secure Layer. In addition, we demonstrate empirically its applicability with extensive experiments over four datasets with various data sizes and model architectures described in Section \ref{sec:exp} to show that \emph{vFedSec} incurs minimal overhead. In addition, we demonstrate that our method can obtain \num{9.1e2} $\sim$ \num{3.8e4} speedup compared to more computation and communication expensive homomorphic encryption (HE). 
+
+
+% Section 5 contains a detailed discussion on two crucial aspects of our approach: the threat model with privacy guarantees and scalability in FL. This discussion encapsulates potential attack scenarios, our method's resilience against them, and its scalability in large-scale FL setups. 
 
 
 
-\section{Overall Paradigm: Federated Prompt Tuning}
+\section{Semi-supervised and Self-supervised FL}
+\subsection{Latent Representation Project}
 
-Pretrained large language models (LLMs) have been driving the recent progress in natural language processing~\citep{brown2020language,chowdhery2022palm,anil2023palm,touvron2023llama,touvron2023llama2}. These large models, built on extensive corpora, offer valuable insights and impressive results across a range of applications. At the meantime, in order to provide universally accessible knowledge with LLMs, extending them to multiple languages has become a particularly relevant research target~\citep{XLM,XLM-R,artetxe-etal-2020-cross,pfeiffer-etal-2020-mad}. 
+\begin{figure}
+    \centering
+    \vspace{-1cm}%%减小图片上间隔
+    \begin{minipage}{0.49\linewidth}
+        \begin{subfigure}[b]{\linewidth}
+            \includegraphics[width=\linewidth]{1.jpg}
+            \caption{Monolingual Tuning.}
+            \label{fig:a}
+        \end{subfigure}
+        \\
+        \begin{subfigure}[b]{\linewidth}
+            \includegraphics[width=\linewidth]{2.jpg}
+            \caption{Centralized Tuning.}
+            \label{fig:b}
+        \end{subfigure}
+    \end{minipage}
+    %\hfill
+    \begin{minipage}{0.49\linewidth}
+        \begin{subfigure}[b]{1.1\linewidth}
+            \includegraphics[width=\linewidth]{3.jpg}
+            \caption{Federated Prompt Tuning.}
+            \label{fig:c}
+        \end{subfigure}
+    \end{minipage}
+    \caption{Comparison of three different fine-tuning paradigms for multilingual tasks. }
+    \vspace{-0.5cm}%%压缩图片后间隔
+    \label{fig:images}
+    
+\end{figure}
+Federated learning (FL)~\citep{fedavg} allows edge devices to collaboratively learn a shared global model while keeping their private data locally on the device, thereby decoupling the ability to do machine learning from the need to store data in the cloud. There are nearly seven billion connected Internet of Things (IoT) devices and three billion smartphones around the world~\citep{lim2020federated}, potentially giving access to an astonishing amount of training data and decentralized computing power for meaningful research and applications. Most existing FL works primarily focus on supervised learning where the local private data is fully labeled. However, assuming that the full set of private data samples includes rich annotations is unrealistic for real-world applications~\citep{fedmatch, semifl, jin2020towards,yang2021federated}. 
+Although for some applications of FL, such as keyboard predictions, labeling data requires virtually no additional effort, this is not generally the case. 
 
-However, finetuning and deploying multilingual LLMs in practical downstream tasks are not as easy as its monolingual counterpart. First of all, sharing data across different regions can be difficult or even impossible. Regulations like the General Data Protection Regulation (GDPR) \cite{lim2020federated} limit cross-region data-sharing. Moreover, languages in various regions can be radically different, e.g. Sino-Tibetan and Indo-European, posing a Non-Independent and Identically Distributed (non-IID) challenge when learning a global multilingual model.
-%
-%
-This situation accentuates privacy concerns, and highlights the need for effective privacy-preserving techniques when using multilingual LLMs. 
-%
-To this end, recent works attempt to address privacy-constrained fine-tuning for multilingual tasks and explore how different languages impact the FL training process ~\cite{Weller2022PretrainedMF}. 
-%
-However, they primarily target high-resources languages; research on low-resource languages remains largely unexplored.
+Acquiring large-scale labeled datasets on the user side can be extremely costly. For example, a large amount of unlabeled data is generated through interactions with smart devices in daily life, such as pictures or physiological indicators measured by wearables. These volumes of data make it impractical to mandate individual users to annotate the data manually. This task can be excessively time-intensive for users, or they may lack the requisite advanced knowledge or expertise for accurate annotation, particularly when the dataset pertains to a specialized domain such as medical data~\citep{yang2021federated}. The complicated process of annotation results in most user data remaining unlabeled, further leading to the conventional FL pipeline being unable to conduct supervised learning.
+Recent studies of self-supervised learning in FL attempt to leverage unlabeled user data to learn robust representations~\citep{gao2022federated,rehman2022federated,rehman2023dawa}. However, the learned model still requires fine-tuning on labeled data for downstream supervised tasks.
 
+%FL has a lot of unlabeled data 
+% FL might experience a more pressing need to utilize the unlabeled dataset compared to centralised training. For example, for cross-device FL, where participants are individual smart devices, a large amount of unlabeled data is generated through interactions with these devices, such as photos or physiological indicators measured by wearables. These volumes of data make it unfeasible to require each user to manually label the data because labeling can be very time-consuming for the user or because users might not possess the sophisticated knowledge or expertise to annotate their private data correctly, especially for the situation when the dataset is highly professional in the specific domain like medical data ~\citep{yang2021federated}, or suppose we have a workout app that automatically evaluates and corrects users' posture. In this case, the end users may be unable to evaluate their posture to correctly label their private, but it is possible to have few limited data stored on the server that can be labeled by experts.
 
-Addressing low-resource languages is essential to promoting technological fairness and protecting the linguistic diversity. Unlike their high-resource counterparts, low-resources languages pose intriguing research challenges: 
-%
-i) \textbf{Limited computational resources.} Regions of low-resources languages are often economically developing areas, with little access to huge computational resources required to either train language models from scratch or fully fine-tune pre-trained large language models~\citep{mager2021findings,adebara-abdul-mageed-2022-towards}.
-ii) \textbf{Limited data in the target language.} Due to a small speaking population or the spoken nature of the language, data is often scarce~\cite{adelani2021masakhaner,muhammad2022naijasenti,ebrahimi-etal-2022-americasnli}. As depicted in Figure ~\ref{fig:linguistic_coverage}, the pretraining data for LLMs is predominantly in English, with little coverage of low-resource languages. Under such circumstances, the performance of low-resources languages is often unsatisfactory during fine-tuning because of their under-representation.
-iii) \textbf{Memorization risk.} Recent studies find that as pre-trained models scale up, their ability to memorize training data increases~\cite{tirumala2022memorization}. This implies that, when fine-tuning these models with limited data, the risk of overfitting and potential privacy issues arises.
+Compared to FL environments, centralized data annotation is more straightforward and precise in data centers. Even in low-resource contexts (e.g., medical data), the task of labeling limited data stored on the server by experts would not demand substantial effort. The integration of semi-supervised learning (SSL)~\citep{chapelle2009semi, yang2022survey,fixmatch,mixmatch} with FL can potentially leverage limited centralized labeled data to generate pseudo labels for supervised training on unlabeled clients. Existing work~\citep{jeong2020federated,zhang2021improving} attempted to perform SSL by using off-the-shelf methods only, such as FixMatch~\citep{fixmatch}, MixMatch~\citep{mixmatch} in FL environments. Although these methods provide certain model convergence guarantees during the FL stage, they cause heavy traffic for data communication due to their per-mini-batch communication protocol. Another recent work, SemiFL~\citep{semifl}, improves the training procedure by implicitly conducting entropy minimization. This is achieved by constructing hard (one-hot) labels from high-confidence predictions on unlabeled data, which are subsequently used as training targets in a standard cross-entropy loss. However, it is argued that using pseudo-labels based on model predictions might lead to a confirmation bias problem or overfitting to easy-to-learn data samples~\citep{nguyen2023boosting}. In addition, the existing methods typically establish a pre-defined threshold, generally set relatively high, to retain only samples with very high confidence.
+This might lead to slow convergence issues, especially during the beginning of training when there are very limited samples satisfying the threshold.
+
+In this paper, we propose an enhanced federated SSL method, dubbed \method ~- a newly designed label contrastive loss based on the cosine similarity metric to train on labeled anchor data on the server.
+In this way, instead of retaining the high-confidence data through solely model prediction in the conventional SSL studies, \method \textit{for-the-first-time} generates the pseudo labels by comparing the similarities between the model representations of unlabeled data and label anchor data. This provides better quality pseudo-labels as shown in Fig.~\ref{fig:pip} (right), alleviates the confirmation bias, and reduces over-fitting easy-to-learn data issues. Our contributions are summarized as follows: 1) we propose a \textit{unique} pseudo-labeling method \method for SSL in FL, which leverages the similarities between feature embeddings of unlabeled data and label anchor data; 2) we design a novel label contrastive loss to further improve the quality of pseudo labels; 3) we perform extensive experiments on three different datasets having different sizes of labeled anchor data and show that the proposed methods achieve the state-of-the-art performance and faster convergence rate.
+
 
 \begin{figure}[t!]
     \centering
@@ -392,7 +387,7 @@ iii) \textbf{Memorization risk.} Recent studies find that as pre-trained models 
     \hfill
     \begin{minipage}{0.43\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{data_efficiency.pdf}
+        \includegraphics[width=\linewidth]{figures/data_efficiency.pdf}
         \caption{Performance comparison on NC with decreasing dataset size.}
         \label{fig:data_amount}
     \end{minipage}
@@ -432,28 +427,28 @@ PE\_FL \bf(Ours)&\bf 43.2&\bf 40.6&\bf 42.9&\bf 40.2&\bf 39.7&\bf 40.8&\bf 41.1&
     \vspace{-0.3cm}%%压缩图片后间隔
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=0.8\linewidth]{nc_lang.png}
+        \includegraphics[width=0.8\linewidth]{figures/nc_lang.png}
         \vspace{-0.1cm}
         \caption{Finetuning accuracy across different lanugages on the NC task. }
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=0.8\linewidth]{nc_distance.pdf}
+        \includegraphics[width=0.8\linewidth]{figures/nc_distance.pdf}
         \vspace{-0.1cm}
         \caption{Finetuning accuracy across languages with varying similarity to the pre-trained language on the NC task. }
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=0.8\linewidth]{performance-distance-xnli.png}
+        \includegraphics[width=0.8\linewidth]{figures/performance-distance-xnli.png}
         \vspace{-0.1cm}
         \caption{Finetuning accuracy across different lanugages on the XNLI task. }
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.49\textwidth}
         \centering
-        \includegraphics[width=0.8\linewidth]{xnli_distance.pdf}
+        \includegraphics[width=0.8\linewidth]{figures/xnli_distance.pdf}
         \vspace{-0.1cm}
         \caption{Finetuning accuracy across languages with varying similarity to the pre-trained language on the XNLI task. }
     \end{subfigure}
@@ -462,134 +457,9 @@ PE\_FL \bf(Ours)&\bf 43.2&\bf 40.6&\bf 42.9&\bf 40.2&\bf 39.7&\bf 40.8&\bf 41.1&
     \label{fig:combined}
 \end{figure}
 
-To counteract the above challenges, we turn to federated learning (FL), where the model training is done across multiple decentralized devices or servers while the data is always kept localized~\cite{fedavg, fedprox, yang2019federated}. In a multilingual setting, FL becomes particularly natural, as data from diverse linguistic backgrounds can be sourced without compromising user privacy, and due to the geographical spread and inherent linguistic diversity of devices, data on each node is likely to exhibit non-IID distribution.
-
-In this paper, in order to mitigate the physical border and the linguistic border of multilinguality, we propose a new paradigm grounded in FL, Multilingual Federated Prompt Tuning, focusing on parameter-efficient fine-tuning for multilingual tasks across various regions or devices. Specifically, our global encoder can discern language patterns and cluster languages via federated prompt averaging, which allows each client to benefit from others' data without direct access. This strategy requires minimal computational resources and significantly improves performance, particularly for low-resource languages. We demonstrate the effectiveness of our method on standard NLP tasks including New Classification and XNLI. The performance of our paradigm achieves 6.9\% accuracy improvement while protecting the privacy of mulitlingual source data. Compared with other Federated Learning approches, our paradigm reduces computational cost and communication cost by more than 99\%. Our approach paves the way for fine-tuning multilingual large language models on resource-constraint devices in a privacy-preserving way, and holds the potential to promote social equality, privacy, and linguistic diversity in the research community.
-
-
-\begin{figure}
-    \centering
-    \vspace{-1cm}%%减小图片上间隔
-    \begin{minipage}{0.49\linewidth}
-        \begin{subfigure}{\linewidth}
-            \includegraphics[width=\linewidth]{1.jpg}
-            \caption{Monolingual Tuning.}
-            \label{fig:a}
-        \end{subfigure}
-        \\
-        \begin{subfigure}{\linewidth}
-            \includegraphics[width=\linewidth]{2.jpg}
-            \caption{Centralized Tuning.}
-            \label{fig:b}
-        \end{subfigure}
-    \end{minipage}
-    %\hfill
-    \begin{minipage}{0.49\linewidth}
-        \begin{subfigure}{\linewidth}
-            \includegraphics[width=\linewidth]{3.jpg}
-            \caption{Federated Prompt Tuning.}
-            \label{fig:c}
-        \end{subfigure}
-    \end{minipage}
-    \caption{Comparison of three different fine-tuning paradigms for multilingual tasks. }
-    \vspace{-0.5cm}%%压缩图片后间隔
-    \label{fig:images}
-    
-\end{figure}
-
-
-
-\section{Security Aspect: Secure Layer in Vertical Federated Learning}
-
-%In 2020, financial fraud in the UK amounted to £783.8 million~\cite{ukfinance}. Efficient crime prevention at such a massive scale necessitates the use of automatic, real-time detection of fraudulent transactions. Machine learning (ML) solutions to this problem have generally been developed within the field of anomaly detection~\cite{chandola2009anomaly} (AD) and gained special attention thanks to recent advances in deep learning~\cite{pang2021deep}. However, a fundamental bottleneck in applying these ML methods is the demand for large amounts of data to be collected in one single logical compute location during training time. This is a \textit{deal breaker} for financial applications as such data is very sensitive, and legal restrictions (e.g., GDPR) can prevent it from being shared across institutions. 
-
-%\textbf{why FL and why vertical FL} 
-%\textbf{want to say also that our method won't impact the overall performance by adding the secure aggregation.}
-
-In this work, we present \emph{vFedSec} - an efficient and privacy-preserving way of training under the Vertical FL setup. %We propose this novel design, called \emph{vFedSec} in Section \ref{sec:secagg}, for training VFL securely and efficiently. 
-Section \ref{sec:secagg} describes our proposed design and introduces its core component, the architecture-agnostic \emph{Secure Layer}.
-% \emph{vFedSec} applies the idea of Secure Aggregation, which masks intermediate outputs and gradients using noise when communicating data with the server. 
-We provide a robust theoretical justification showing that our proposed method does not adversely affect training performance and private information is protected through the Secure Layer. To validate our claims empirically, we have conducted comprehensive experiments over four varied datasets of differing data volumes and model architectures, as detailed in Section \ref{sec:exp}. The results substantiate that our vFedSec imposes negligible overhead in all cases. Moreover, our method demonstrates a remarkable $\geq 690$x speedup and $\geq 9.6$x decrease in communication costs when compared to the resource-intensive homomorphic encryption (HE) techniques, thus affirming its superior computational and communication efficiency. % We demonstrate theoretically that our method does not impact training performance and private information is protected through the Secure Layer. In addition, we demonstrate empirically its applicability with extensive experiments over four datasets with various data sizes and model architectures described in Section \ref{sec:exp} to show that \emph{vFedSec} incurs minimal overhead. In addition, we demonstrate that our method can obtain \num{9.1e2} $\sim$ \num{3.8e4} speedup compared to more computation and communication expensive homomorphic encryption (HE). 
-
-
-% Section 5 contains a detailed discussion on two crucial aspects of our approach: the threat model with privacy guarantees and scalability in FL. This discussion encapsulates potential attack scenarios, our method's resilience against them, and its scalability in large-scale FL setups. 
-
-\begin{figure}
-\centering
-
-\includegraphics[width=0.9\linewidth]{protocol.png} 
-\caption{A high-level view of our protocol.  \color{blue} Labels \color{black} in the forward pass section are only required in training. Though each client only generates one key pair as in the plot, it is recommended in practice to generate at least two key pairs for noise generation and symmetric encryption to mitigate the risks of severe data breaches in the event of unexpected secret keys or shared secrets leakage.}
-\label{fig:protocol}
-\end{figure}
-
-
-\section{Data Aspect: Semi-supervised and Self-supervised FL}
-\subsection{FedAnchor: Enhancing Federated Semi-Supervised Learning with Label Contrastive Loss}
-
-Federated learning (FL)~\citep{fedavg} allows edge devices to collaboratively learn a shared global model while keeping their private data locally on the device, thereby decoupling the ability to do machine learning from the need to store data in the cloud. There are nearly seven billion connected Internet of Things (IoT) devices and three billion smartphones around the world~\citep{lim2020federated}, potentially giving access to an astonishing amount of training data and decentralized computing power for meaningful research and applications. Most existing FL works primarily focus on supervised learning where the local private data is fully labeled. However, assuming that the full set of private data samples includes rich annotations is unrealistic for real-world applications~\citep{fedmatch, semifl, jin2020towards,yang2021federated}. 
-Although for some applications of FL, such as keyboard predictions, labeling data requires virtually no additional effort, this is not generally the case. 
-
-Acquiring large-scale labeled datasets on the user side can be extremely costly. For example, a large amount of unlabeled data is generated through interactions with smart devices in daily life, such as pictures or physiological indicators measured by wearables. These volumes of data make it impractical to mandate individual users to annotate the data manually. This task can be excessively time-intensive for users, or they may lack the requisite advanced knowledge or expertise for accurate annotation, particularly when the dataset pertains to a specialized domain such as medical data~\citep{yang2021federated}. The complicated process of annotation results in most user data remaining unlabeled, further leading to the conventional FL pipeline being unable to conduct supervised learning.
-Recent studies of self-supervised learning in FL attempt to leverage unlabeled user data to learn robust representations~\citep{gao2022federated,rehman2022federated,rehman2023dawa}. However, the learned model still requires fine-tuning on labeled data for downstream supervised tasks.
-
-%FL has a lot of unlabeled data 
-% FL might experience a more pressing need to utilize the unlabeled dataset compared to centralised training. For example, for cross-device FL, where participants are individual smart devices, a large amount of unlabeled data is generated through interactions with these devices, such as photos or physiological indicators measured by wearables. These volumes of data make it unfeasible to require each user to manually label the data because labeling can be very time-consuming for the user or because users might not possess the sophisticated knowledge or expertise to annotate their private data correctly, especially for the situation when the dataset is highly professional in the specific domain like medical data ~\citep{yang2021federated}, or suppose we have a workout app that automatically evaluates and corrects users' posture. In this case, the end users may be unable to evaluate their posture to correctly label their private, but it is possible to have few limited data stored on the server that can be labeled by experts.
-
-Compared to FL environments, centralized data annotation is more straightforward and precise in data centers. Even in low-resource contexts (e.g., medical data), the task of labeling limited data stored on the server by experts would not demand substantial effort. The integration of semi-supervised learning (SSL)~\citep{chapelle2009semi, yang2022survey,fixmatch,mixmatch} with FL can potentially leverage limited centralized labeled data to generate pseudo labels for supervised training on unlabeled clients. Existing work~\citep{jeong2020federated,zhang2021improving} attempted to perform SSL by using off-the-shelf methods only, such as FixMatch~\citep{fixmatch}, MixMatch~\citep{mixmatch} in FL environments. Although these methods provide certain model convergence guarantees during the FL stage, they cause heavy traffic for data communication due to their per-mini-batch communication protocol. Another recent work, SemiFL~\citep{semifl}, improves the training procedure by implicitly conducting entropy minimization. This is achieved by constructing hard (one-hot) labels from high-confidence predictions on unlabeled data, which are subsequently used as training targets in a standard cross-entropy loss. However, it is argued that using pseudo-labels based on model predictions might lead to a confirmation bias problem or overfitting to easy-to-learn data samples~\citep{nguyen2023boosting}. In addition, the existing methods typically establish a pre-defined threshold, generally set relatively high, to retain only samples with very high confidence.
-This might lead to slow convergence issues, especially during the beginning of training when there are very limited samples satisfying the threshold.
-
-\begin{algorithm}[!t]
-    %\small
-    \caption{\small\textbf{\method}: Let $N$ be the total number of clients, with total $n$ data samples; $(x^m)$ be the unlabeled data in client $m$; $(x^{anchor}, y^{anchor})$ be the labeled anchor data in the server; $z^m$ be the output of the latent space for the unlabeled client data, and $z^{anchor}$ be the output of the latent space for the anchor data; we let $\hat{y}$ be the pseudo-label for unlabeled data; $E$ be the number of local epochs; $r$ be the participation ratio of clients in each round; $w_t$ be the aggregated weights at round $t$; $C$ be the total number of labels; $Z^{anchor}$ be the set of anchor latent representation; $\eta_{clt}$ and $\eta_{ser}$ be the client and server learning rate respectively.} \label{algorithm:algo}
-    \begin{algorithmic}
-    \Procedure{Server executes}{}
-        \State Initialize the model weight $w_0$
-        \For {t = 1,...,T}
-            \State $M_t \leftarrow$ random select $(rN)$ number of clients 
-            \State compute $Z^{anchor}$
-            \For{ each $m \in M_t$}
-                \State $w_{t+1}^m \leftarrow$  ClientUpdate$(k,w_t, x_{m},Z^{anchor})$
-            \EndFor
-        \EndFor
-        \State $w_{t+1} \leftarrow \sum_{m \in M_t} \frac{n_m}{\sum n_m} w_{t+1}^m$
-        \State $w_{t+1} \leftarrow$ ServerUpdate($w_{t+1}$)
-    \EndProcedure
-    \Procedure{ClientUpdate}{$k,w_t,x_{m},Z_a$}
-        \State $\hat{y}_m \leftarrow$ PseudoLabel($x_{m}, Z_a$)
-        \State create fix dataset: $\mathcal{D}^{fix}_m = \{  (x_{m, i}, \hat{y}_{m, i} )$ s.t. $\max(sa(z_{m, i})_c) > t \}$ (eq. \ref{eq:fixdataset})
-        \If{ $\mathcal{D}^{fix}_m \not = \emptyset$}
-            \State create mix dataset: $\mathcal{D}^{mix}_{m} = $Sample $|\mathcal{D}^{fix}_{m}|$  with replacement from  $\{ (x_{m, i}, \hat{y}_{m, i} )\}$ (eq. \ref{eq:mixdataset})
-        \Else
-            \State terminate ClientUpdate
-        \EndIf
-        \For{local epoch $e = 1,..., E$}
-        \State $\mathcal{L}_{fix} = l(f(A(x^{fix}_b), \hat{y}^{fix}_b)$ (eq. \ref{eq:fixloss})
-        \State $\lambda_{mix} \sim Beta(a,a), \ x_{mix} = \lambda_{mix} x^{fix} + (1-\lambda_{mix}) x^{mix}$  (eq. \ref{eq:mixloss1})
-        \State $\mathcal{L}_{mix} = \lambda_{mix} \cdot l(f(\alpha(x_{mix}, \hat{y}^{fix})) + (1-\lambda_{mix} ) \cdot l(f(\alpha(x_{mix}, \hat{y}^{mix}))$  (eq. \ref{eq:mixloss2})
-        \State $\mathcal{L}_{combine} = \mathcal{L}_{fix} + b\mathcal{L}_{mix}$  (eq. \ref{eq:combinedloss})
-        \State $w_{t+1}^m \leftarrow w_t - \eta_{clt} \nabla \mathcal{L}_{combine}$
-        \EndFor
-    \EndProcedure\Procedure{PseudoLabel}{$x_{m}, Z_a$}
-        \State create label specific anchor projected set: $Z^{anchor}_{c} = \{ z^{anchor}_{i}, y^{anchor}_i = c \}, \forall c \in [C] $
-        \State $s^{avg}_c(z^m_{i}) = \frac{1}{|Z^{anchor}_{c}|} \sum_{z_k \in Z^{anchor}_{c}} s(z^m_{i}, z_k)$  (eq. \ref{eq:savg})
-        \State $\hat{y}^m_{m} = \argmax_{c \in [C]} ( s^{avg}_c(z^m_{i}))$  (eq. \ref{eq:yhat})
-    \EndProcedure
-    \Procedure{ServerUpdate}{$w_{t+1}$}
-        \State compute supervised loss $\mathcal{L}_s = l(f(A(x_a), y_a)$
-        \State $w_{t+1} \leftarrow w_{t+1} - \eta_{se}\nabla \mathcal{L}_s$
-        \State $l(c) = -\log \frac{\sum _{y(i), y(j) = c}\exp (s_{z_i,z_j}/\tau)}{\sum_{y(i) \not = y(j) } \exp(s_{z_i,z_j}/\tau)}  $(eq. \ref{eq:cossimloss})
-        \State $\mathcal{L}_c =  \frac{1}{C} \sum_{c=1}^C l(c) $ (eq. \ref{eq:cossimloss2})
-        \State $w_{t+1} \leftarrow w_{t+1} - \eta_{se}\nabla \mathcal{L}_c$
-    \EndProcedure
-    \end{algorithmic}
-\end{algorithm}
-
-In this paper, we propose an enhanced federated SSL method, dubbed \method ~- a newly designed label contrastive loss based on the cosine similarity metric to train on labeled anchor data on the server.
-In this way, instead of retaining the high-confidence data through solely model prediction in the conventional SSL studies, \method \textit{for-the-first-time} generates the pseudo labels by comparing the similarities between the model representations of unlabeled data and label anchor data. This provides better quality pseudo-labels as shown in Fig.~\ref{fig:pip} (right), alleviates the confirmation bias, and reduces over-fitting easy-to-learn data issues. Our contributions are summarized as follows: 1) we propose a \textit{unique} pseudo-labeling method \method for SSL in FL, which leverages the similarities between feature embeddings of unlabeled data and label anchor data; 2) we design a novel label contrastive loss to further improve the quality of pseudo labels; 3) we perform extensive experiments on three different datasets having different sizes of labeled anchor data and show that the proposed methods achieve the state-of-the-art performance and faster convergence rate.
-
 \begin{figure}[t]
 \centering
-    \includegraphics[width=\linewidth]{pip.png}
+    \includegraphics[width=\linewidth]{figures/pip.png}
 \caption{\small (left) Pipeline of \method with pseudo labeling and anchor data on the server. Anchor embeddings are only transmitted to the clients during downstream communication. (right) Pseudo labeling accuracy with 5000/2500/1000 anchor data on CIFAR10/CIFAR100/SVHN datasets, respectively.}
 \label{fig:pip}
 \vspace{-5mm}
@@ -623,7 +493,7 @@ In this way, instead of retaining the high-confidence data through solely model 
 
 
 
-\subsection{Federated Early-Exit}
+\subsection{Early Exit Project}
 %%%
 
 Self-supervised learning (SSL) has achieved state-of-the-art (SOTA) results in numerous tasks, which typically benefit from vast amounts of unlabelled training data.  With the advancement of the internet of things (IoT), a substantial amount of user data, with the nature of privacy-sensitive and unlabelled, is generated daily from edge devices. 
@@ -643,26 +513,68 @@ The pieces of **novelty** compared to ScaleFL and other works would be:
 - Possibly improve the aggregation procedure compared to ScaleFL, which relies on the abovementioned structural dependencies and the self-distillation step.
 
 
+
+\section{Federated Prompt Tuning}
+
+Pretrained large language models (LLMs) have been driving the recent progress in natural language processing~\citep{brown2020language,chowdhery2022palm,anil2023palm,touvron2023llama,touvron2023llama2}. These large models, built on extensive corpora, offer valuable insights and impressive results across a range of applications. At the meantime, in order to provide universally accessible knowledge with LLMs, extending them to multiple languages has become a particularly relevant research target~\citep{XLM,XLM-R,artetxe-etal-2020-cross,pfeiffer-etal-2020-mad}. 
+
+However, finetuning and deploying multilingual LLMs in practical downstream tasks are not as easy as its monolingual counterpart. First of all, sharing data across different regions can be difficult or even impossible. Regulations like the General Data Protection Regulation (GDPR) \cite{lim2020federated} limit cross-region data-sharing. Moreover, languages in various regions can be radically different, e.g. Sino-Tibetan and Indo-European, posing a Non-Independent and Identically Distributed (non-IID) challenge when learning a global multilingual model.
+%
+%
+This situation accentuates privacy concerns, and highlights the need for effective privacy-preserving techniques when using multilingual LLMs. 
+%
+To this end, recent works attempt to address privacy-constrained fine-tuning for multilingual tasks and explore how different languages impact the FL training process ~\cite{Weller2022PretrainedMF}. 
+%
+However, they primarily target high-resources languages; research on low-resource languages remains largely unexplored.
+
+
+Addressing low-resource languages is essential to promoting technological fairness and protecting the linguistic diversity. Unlike their high-resource counterparts, low-resources languages pose intriguing research challenges: 
+%
+i) \textbf{Limited computational resources.} Regions of low-resources languages are often economically developing areas, with little access to huge computational resources required to either train language models from scratch or fully fine-tune pre-trained large language models~\citep{mager2021findings,adebara-abdul-mageed-2022-towards}.
+ii) \textbf{Limited data in the target language.} Due to a small speaking population or the spoken nature of the language, data is often scarce~\cite{adelani2021masakhaner,muhammad2022naijasenti,ebrahimi-etal-2022-americasnli}. As depicted in Figure ~\ref{fig:linguistic_coverage}, the pretraining data for LLMs is predominantly in English, with little coverage of low-resource languages. Under such circumstances, the performance of low-resources languages is often unsatisfactory during fine-tuning because of their under-representation.
+iii) \textbf{Memorization risk.} Recent studies find that as pre-trained models scale up, their ability to memorize training data increases~\cite{tirumala2022memorization}. This implies that, when fine-tuning these models with limited data, the risk of overfitting and potential privacy issues arises.
+
+To counteract the above challenges, we turn to federated learning (FL), where the model training is done across multiple decentralized devices or servers while the data is always kept localized~\cite{fedavg, fedprox, yang2019federated}. In a multilingual setting, FL becomes particularly natural, as data from diverse linguistic backgrounds can be sourced without compromising user privacy, and due to the geographical spread and inherent linguistic diversity of devices, data on each node is likely to exhibit non-IID distribution.
+
+In this paper, in order to mitigate the physical border and the linguistic border of multilinguality, we propose a new paradigm grounded in FL, Multilingual Federated Prompt Tuning, focusing on parameter-efficient fine-tuning for multilingual tasks across various regions or devices. Specifically, our global encoder can discern language patterns and cluster languages via federated prompt averaging, which allows each client to benefit from others' data without direct access. This strategy requires minimal computational resources and significantly improves performance, particularly for low-resource languages. We demonstrate the effectiveness of our method on standard NLP tasks including New Classification and XNLI. The performance of our paradigm achieves 6.9\% accuracy improvement while protecting the privacy of mulitlingual source data. Compared with other Federated Learning approches, our paradigm reduces computational cost and communication cost by more than 99\%. Our approach paves the way for fine-tuning multilingual large language models on resource-constraint devices in a privacy-preserving way, and holds the potential to promote social equality, privacy, and linguistic diversity in the research community.
+
+
+\begin{figure}
+    \centering
+    \vspace{-1cm}%%减小图片上间隔
+    \begin{minipage}{0.49\linewidth}
+        \begin{subfigure}[b]{\linewidth}
+            \includegraphics[width=\linewidth]{1.jpg}
+            \caption{Monolingual Tuning.}
+            \label{fig:a}
+        \end{subfigure}
+        \\
+        \begin{subfigure}[b]{\linewidth}
+            \includegraphics[width=\linewidth]{2.jpg}
+            \caption{Centralized Tuning.}
+            \label{fig:b}
+        \end{subfigure}
+    \end{minipage}
+    %\hfill
+    \begin{minipage}{0.49\linewidth}
+        \begin{subfigure}[b]{1.1\linewidth}
+            \includegraphics[width=\linewidth]{3.jpg}
+            \caption{Federated Prompt Tuning.}
+            \label{fig:c}
+        \end{subfigure}
+    \end{minipage}
+    \caption{Comparison of three different fine-tuning paradigms for multilingual tasks. }
+    \vspace{-0.5cm}%%压缩图片后间隔
+    \label{fig:images}
+    
+\end{figure}
+
+
 \chapter{Proposed Research} \label{Proposal}
 
-
-\section{Security Aspect: Secure Layer for Foundation Models}
-
-% Foundation Model Security 
-
-In previous studies, the focus has been on utilizing secure linear layers to address issues in foundational models. This approach can be effortlessly extended to any global model structure. In my upcoming PhD research, I intend to incorporate a secure layer within the federated fine-tuning of global foundational models. Both theoretical analyses and empirical tests will be conducted to demonstrate the robustness of our methodology. Furthermore, we aim to enhance the secure layer technique to accommodate stragglers and dropout scenarios, as well as offer support for non-asynchronous aggregation.
-
-\section{Data Aspect: Data Alignment for Federated Learning}
+\section{Data: Data Alignment for Federated Learning}
 
 %\section{Domain Adaptation in Federated Learning}
-
-\begin{figure}[t]
-\centering
-    \includegraphics[width=0.7\linewidth]{quality.png}
-\caption{Pipeline for Federated Data Quality Control for Foundation Models.}
-\label{fig:pip}
-\vspace{-5mm}
-\end{figure}
 
 \subsection{Data-Augmented FL}
 
@@ -671,8 +583,6 @@ One of the earlier known works to use dataset augmentation to relieve heterogene
 While only small number of examples are needed to significantly boost model performance, it is unrealistic to assume the server has examples for every or any label. In lieu of real examples, sample mixing is a popular augmentation strategy. Mixup [18] forms convex combinations of k examples (k-way mixup) and their labels, with weights drawn from common random distributions. Mixup and its privacy-improved variant InstaHide [5] produces pseudo-synthetic training data beneficial to improving model-robustness against adversarial examples.
 
 FedMix [17] was one of the earlier known works to use mixup to balance label-skew. To homogenize data distributions, k-way mixups of all client data and labels are constructed and sent up to the server, where it is then unioned and sent back down to clients for training. This approach can prove expensive over large client clusters, especially if the total data size across all clients is massive, and for smaller, C = 1 label-skewed clients, their mixups are easily decodable by other clients with rich, balanced data [3] due to information gleaned from the ”pseudo”-label – which will contain one entry. XORMixFL [15] also distributes mixed-client data via mixup and is intended for one-shot server-side training, as opposed to directly improving local training.
-
-\subsection{Federated Data Quality Control}
 
 Currently, the training of large-scale models heavily relies on public domain data. Recent studies indicate that the availability of such public data is nearing exhaustion. To further enhance the performance of large models, there is an urgent need to incorporate high-quality, domain-specific private data. However, due to their unique security and privacy attributes, private datasets become "accessible but invisible" resources. This poses significant challenges in quality control during model training. To address this, our research proposes a federated learning approach centered on data quality. By ensuring data privacy, we purposefully select multi-party private data that aligns with the "3H" principle (Helpful, Honest, Harmless) for language model training. The goal is not only to improve model performance but also to ensure alignment with human values.
 
@@ -684,14 +594,15 @@ For the federated model training scenario, we propose a client-based distributed
 
 We introduce a rapid retraining technique based on meta-learning and machine forgetting. Without compromising the model's performance, this enhances the safety and human-machine alignment in multi-party collaborations.
 
-% \subsection{Dataset Shift} 
+
+\subsection{Dataset Shift} 
 
 % Domain Adaptation
 % https://www.youtube.com/watch?v=iLT08YG2Mt0
 
-% \section{Model: Incentive Machinism}
+\section{Model: Incentive Machinism}
 
-\section{Memory Aspect: Efficient Federated Finetuning for Foundation Models}
+\section{Memory: Efficient Federated Learning}
 
 % Personalized Federated Learning Memory Budget
 
@@ -701,16 +612,16 @@ We introduce a rapid retraining technique based on meta-learning and machine for
 
 Parameter efficiency tries to optimize the ratio between the model performance (e.g. accuracy) and the amount of parameters used. Models which are efficient in terms of the amount of parameters tend to require less data to train and generalize better.
 
-Computational efficiency tries to optimize the ratio between model performance and the amount of computational time that needs to be spent. Depending on what is most crucial, computational efficiency could be calculated based on the time required to train the model, or the time required to do inference. 
+Computational efficiency tries to optimize the ratio between model performance and the amount of computational time that needs to be spent. Depending on what is most crucial, computational efficiency could be calculated based on the time required to train the model, or the time required to do inference.
+
 
 % Memory
 
 Large language models (LLMs) have become a cornerstone of natural language processing (Brown et al., 2020; Touvron et al., 2023a; OpenAI, 2023; Anil et al., 2023), and fine-tuning pre-trained LLMs has been shown very effective to improve their performance in various downstream tasks (Liu et al., 2019; Wei et al., 2021) and to enable them to align with human intents (Ouyang et al., 2022; Bai et al., 2022). However, fine-tuning LLMs with full parameter is prohibitively expensive, for example, fine-tuning a LLaMA-65B (Touvron et al., 2023a) model with AdamW (Loshchilov & Hutter, 2017) requires more than 1TB of GPU memory to store model parameter, gradient, and optimizer states (Rajbhandari et al., 2020).
 
 To reduce the memory of full-parameter fine-tuning, parameter-efficient fine-tuning (PEFT) methods are proposed to update only a small fraction of parameters, such as adapter weights (Houlsby et al., 2019; Hu et al., 2022) and prompt weights (Li & Liang, 2021; Lester et al., 2021). Among these methods, LoRA (Hu et al., 2022) has shown to achieve comparable performance than full-parameter fine-tuning, and it has been widely used in many applications (Dettmers et al., 2023).
-Specifically, LoRA adds a parallel low-rank adapter besides the weight of a linear layer, as shown in Figure 1(b), where W is the pre-trained weight, A and B are low-rank weights. Because LoRA freezes W and only updates smaller matrices A and B, its memory overhead for trainable parameter and corresponding gradient and optimizer states can be largely reduced, compared to full-parameter fine-tuning as shown in Figure 1(a), which can be regarded as updating W and freezing A and B. Furthermore, LoRA introduces no additional inference latency by merging the value of AB into W. However, LoRA still has limitations as it requires expensive activation memory consumption in LoRA layers. This is because the large input activation of X needs to be stored during the feed- forward pass, and used to construct the gradient of A during the back-propagation pass. It means LoRA cannot reduce the activation memory cost compared to full-parameter fine-tuning. For ex- ample, fine-tuning a LLaMA-65B with input sequence length of 2048 and batch size of 4 requires more than 50GB of activation memory (in 16-bit format) in all LoRA layers. To address it, existing methods select a part of linear layers for LoRA fine-tuning (Hu et al., 2022) or use activation recomputation (Chen et al., 2016), which however could affect fine-tuning performance or efficiency.
+Specifically, LoRA adds a parallel low-rank adapter besides the weight of a linear layer, as shown in Figure 1(b), where W is the pre-trained weight, A and B are low-rank weights. Because LoRA freezes W and only updates smaller matrices A and B, its memory overhead for trainable parameter and corresponding gradient and optimizer states can be largely reduced, compared to full-parameter fine-tuning as shown in Figure 1(a), which can be regarded as updating W and freezing A and B. Furthermore, LoRA introduces no additional inference latency by merging the value of AB into W. However, LoRA still has limitations as it requires expensive activation memory consumption in LoRA layers. This is because the large input activation of X needs to be stored during the feed- forward pass, and used to construct the gradient of A during the back-propagation pass. It means LoRA cannot reduce the activation memory cost compared to full-parameter fine-tuning. For ex- ample, fine-tuning a LLaMA-65B with input sequence length of 2048 and batch size of 4 requires more than 50GB of activation memory (in 16-bit format) in all LoRA layers. To address it, existing methods select a part of linear layers for LoRA fine-tuning (Hu et al., 2022) or use activation recom- putation (Chen et al., 2016), which however could affect fine-tuning performance or efficiency.
 
-Future research would focus on adjusting activated weights in LoRA in a Federated manner, to adapt better according to personalised memory or computational budget. 
 
 % \section{Communication}
 
@@ -736,34 +647,42 @@ Future research would focus on adjusting activated weights in LoRA in a Federate
 \section{Year 2}
 \paragraph{Michaelmas Term} 
 
-• Improve previous work on Multilingual Federated Prompt Tuning and ICLR Rebuttals. 
+• Continue work on quantization by addressing immediate follow-ups from Degree- Quant work.
 
-• Continue work on building Federated Finetuning experimental platform based on Flower. 
+• Implement fast quantized GNN kernels for CPU and potentially other platforms (e.g. mobile or GPU).
 
-• Work on Secure Layer for Foundation Models and ICLR Rebuttals. 
-
+• Extensive literature review on activation compression and sparsity. 
 \paragraph{Lent Term} 
 
-• Begin work on Federated Data Quality Control, aiming to submission at NeurIPS 2024. 
+• Write up conclusions on follow ups to Degree-Quant; if possible, written up early for a conference submission.
 
-• Continue work on Early Exit for Federated Self-Supervised Learning. 
+• Clean up quantization code and open source as a library.
 
-
+• Begin work on activation compression. This work may be applicable to other types of architectures, so should evaluate on both GNNs and CNNs or Transformers.
 \paragraph{Easter Term}
 
-• Write up conclusions from previous project.
+• Write up conclusions from activation compression project.
 
 • Update library and open source.
+
+• Explore follow-ups to activation compression project or assess other types of graph optimisations.
 
 \paragraph{Summer Term}
 
 • Buffer time for over-runs from previous projects, or if compelling follow-ups are worth exploring.
 
+• Begin literature review on architecture design.
+
+• Implement ideas to improve GNN architectural efficiency and write up for submission if promising results.
+
 \section{Year 3}
 
 \paragraph{Michaelmas Term}
+• Finalise literature review for thesis.
 
-• Begin Efficient Federated Tuning project. 
+• Continue work on GNN architectural efficiency if needed. Otherwise, assess follow-ups for any of previous work completed or choose an extension project.
+
+• Keep library up to date.
 
 \paragraph{Lent Term}
 
@@ -811,10 +730,10 @@ Future research would focus on adjusting activated weights in LoRA in a Federate
 %% Appendix:
 %%
 
-% \appendix
+\appendix
 
-% \chapter{Extra Information}
-% Some more text ...
+\chapter{Extra Information}
+Some more text ...
 
 
 
